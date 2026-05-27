@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de Referencias · Repositorios Universitarios PE</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Generador de Referencias Bibliográficas</h1>
+      <p class="subtitle">
+        Pega la URL de un ítem de un repositorio universitario peruano (UCSM, UNSA,
+        San Pablo, UTP, UNMSM, PUCP, UNI, …) y elige el estilo de cita.
+      </p>
+    </header>
+
+    <form id="ref-form" autocomplete="off">
+      <label for="url">URL del ítem</label>
+      <input
+        id="url"
+        name="url"
+        type="url"
+        required
+        placeholder="https://repositorio.ucsm.edu.pe/items/…"
+      />
+
+      <fieldset class="formats">
+        <legend>Estilo de cita</legend>
+        {% for fmt in formats %}
+        <label class="chip">
+          <input type="radio" name="style" value="{{ fmt }}"
+            {% if loop.first %}checked{% endif %} />
+          <span>
+            {% if fmt == 'apa' %}APA 7
+            {% elif fmt == 'vancouver' %}Vancouver
+            {% elif fmt == 'ieee' %}IEEE
+            {% elif fmt == 'mla' %}MLA 9
+            {% elif fmt == 'chicago' %}Chicago
+            {% elif fmt == 'iso690' %}ISO 690
+            {% else %}{{ fmt }}
+            {% endif %}
+          </span>
+        </label>
+        {% endfor %}
+      </fieldset>
+
+      <button id="submit-btn" type="submit">Generar referencia</button>
+    </form>
+
+    <section id="result" hidden>
+      <div class="result-header">
+        <h2>Referencia generada</h2>
+        <button id="copy-btn" type="button" class="copy">Copiar</button>
+      </div>
+      <pre id="reference"></pre>
+
+      <details>
+        <summary>Metadatos detectados</summary>
+        <table id="meta-table"></table>
+      </details>
+    </section>
+
+    <section id="error" hidden>
+      <p id="error-msg"></p>
+    </section>
+
+    <footer>
+      <p>
+        Soporta repositorios DSpace (estándar). Extrae metadatos de las
+        etiquetas <code>citation_*</code>, <code>DC.*</code> y
+        <code>dcterms.*</code>. Si el sitio bloquea el acceso desde
+        centros de datos, intenta abrirlo desde tu red residencial.
+      </p>
+    </footer>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

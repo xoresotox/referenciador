@@ -1,0 +1,251 @@
+:root {
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --border: #e2e8f0;
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --success: #16a34a;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  margin: 0 0 2rem;
+  color: var(--muted);
+}
+
+form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="url"] {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input[type="url"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+fieldset.formats {
+  border: none;
+  padding: 0;
+  margin: 1.25rem 0 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+fieldset.formats legend {
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.chip {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.92rem;
+  user-select: none;
+  transition: all 0.15s;
+}
+
+.chip:hover span {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.chip input:checked + span {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+#submit-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+#submit-btn:hover { background: var(--primary-dark); }
+
+#submit-btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+#result {
+  margin-top: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.result-header h2 { margin: 0; font-size: 1.15rem; }
+
+.copy {
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  transition: all 0.15s;
+}
+
+.copy:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.copy.copied { color: var(--success); border-color: var(--success); }
+
+#reference {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.97rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  margin: 0;
+}
+
+details { margin-top: 1rem; }
+details summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+#meta-table {
+  margin-top: 0.75rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+#meta-table td {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+#meta-table td:first-child {
+  color: var(--muted);
+  font-weight: 600;
+  width: 30%;
+  white-space: nowrap;
+}
+
+#error {
+  margin-top: 1.5rem;
+  background: var(--danger-light);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+
+#error p { margin: 0; }
+
+footer {
+  margin-top: 2.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+footer code {
+  background: #e2e8f0;
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.5rem; }
+  form { padding: 1rem; }
+}
