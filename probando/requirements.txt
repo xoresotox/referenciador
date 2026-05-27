@@ -4,3 +4,4 @@ beautifulsoup4==4.12.3
 lxml==6.1.1
 cloudscraper==1.2.71
 gunicorn==22.0.0
+playwright==1.48.0
