@@ -185,14 +185,7 @@ def _looks_like_challenge_title(title: Optional[str]) -> bool:
 
 def _fetch_playwright(url: str, *, max_wait_s: int = 50) -> str:
     """Renderiza la página con un navegador real (Playwright Chromium)."""
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError:
-        raise ScrapeError(
-            "Este repositorio tiene protección antibot que no se puede resolver "
-            "en el servidor gratuito. Prueba con una URL de repositorio DSpace "
-            "sin Cloudflare, como los de UNSA, UCSM o UNMSM."
-        )
+    from playwright.sync_api import sync_playwright
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
